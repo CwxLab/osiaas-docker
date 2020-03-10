@@ -12,6 +12,14 @@ services:
     image: docker.pkg.github.com/cwxlab/osiaas/database:stein
     container_name: database
     hostname: database
+    volumes:
+      - type: bind
+        source: /var/opt/hosting/cwxlab/osiaas/database/var/lib/mysql/
+        target: /var/lib/mysql/
+      - type: bind
+        source: /opt/hosting/cwxlab/osiaas/database/etc/mysql/mariadb.cond.d/99-openstack.conf
+        target: /etc/mysql/mariadb.cond.d/99-openstack.conf
+        read_only: true
     ports:
       - "3306:3306"
   keystone:
