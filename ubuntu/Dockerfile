@@ -1,0 +1,9 @@
+FROM ubuntu:bionic
+
+RUN \
+	apt-get update && \
+	apt-get upgrade -y && \
+	apt-get install -y \
+		vim	&& \
+	apt-get autoremove -y && \
+	apt-get clean

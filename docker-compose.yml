@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  ubuntu:
+    build: ./ubuntu/
+    image: docker.pkg.github.com/cwxlab/osiaas/ubuntu:stein
+    container_name: ubuntu
+    hostname: ubuntu
+  database:
+    depends_on:
+      - ubuntu
+    build: ./database/
+    image: docker.pkg.github.com/cwxlab/osiaas/database:stein
+    container_name: database
+    hostname: database
+    port:
+      - "3306:3306"
+  keystone:
+    depends_on:
+      - ubuntu
+    build: ./keystone/
+    image: docker.pkg.github.com/cwxlab/osiaas/keystone:stein
+    container_name: keystone
+    hostname: keystone
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: /opt/hosting/cwxlab/osiaas/keystone/etc/keystone/keystone.conf
+        target: /etc/keystone/keystone.conf
+        read_only: true
+      - type: bind
+        source: /opt/hosting/cwxlab/osiaas/keystone/etc/keystone/fernet-keys/
+        target: /etc/keystone/fernet-keys/
+      - type: bind
+        source: /opt/hosting/cwxlab/osiaas/keystone/etc/keystone/credential-keys/
+        target: /etc/keystone/credential-keys/
