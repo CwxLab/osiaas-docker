@@ -3,7 +3,7 @@ FROM docker.pkg.github.com/cwxlab/osiaas/ubuntu:stein
 RUN \
 	apt-get update && \
 	apt-get install -y \
-		mariadb-server-10.3 && \
+		mariadb-server && \
 	apt-get clean
 
 RUN \
