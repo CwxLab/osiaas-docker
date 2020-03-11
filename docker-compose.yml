@@ -1,13 +1,6 @@
 version: '3.3'
 services:
-  ubuntu:
-    build: ./ubuntu/
-    image: docker.pkg.github.com/cwxlab/osiaas/ubuntu:stein
-    container_name: ubuntu
-    hostname: ubuntu
   database:
-    depends_on:
-      - ubuntu
     build: ./database/
     image: docker.pkg.github.com/cwxlab/osiaas/database:stein
     container_name: database
@@ -23,8 +16,6 @@ services:
     ports:
       - "3306:3306"
   keystone:
-    depends_on:
-      - ubuntu
     build: ./keystone/
     image: docker.pkg.github.com/cwxlab/osiaas/keystone:stein
     container_name: keystone
