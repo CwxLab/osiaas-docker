@@ -11,7 +11,7 @@ services:
         target: /var/lib/mysql/
       - type: bind
         source: /opt/hosting/cwxlab/osiaas/database/etc/mysql/mariadb.cond.d/99-openstack.conf
-        target: /etc/mysql/mariadb.cond.d/99-openstack.conf
+        target: /etc/mysql/mariadb.conf.d/99-openstack.conf
         read_only: true
     ports:
       - "3306:3306"
