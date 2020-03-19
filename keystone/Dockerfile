@@ -4,4 +4,4 @@ RUN \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		keystone
 
-CMD ["/usr/bin/apachectl -D FOREGROUND"]
+CMD ["/usr/sbin/apachectl -D FOREGROUND"]
